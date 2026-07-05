@@ -3,228 +3,167 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday ❤️</title>
+<title>🎂 Happy Birthday ❤️</title>
 
-<style>
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:linear-gradient(135deg,#ffb6c1,#ffd1dc);
-text-align:center;
-overflow-x:hidden;
-}
+<link rel="stylesheet" href="style.css">
 
-.page{
-display:none;
-padding:40px;
-}
-
-.active{
-display:block;
-}
-
-button{
-padding:15px 30px;
-font-size:18px;
-margin:10px;
-  
-border:none;
-border-radius:30px;
-cursor:pointer;
-background:#ff4f81;
-color:white;
-}
-
-input{
-padding:15px;
-font-size:18px;
-border-radius:20px;
-border:none;
-}
-
-.balloon{
-font-size:50px;
-animation:float 5s infinite;
-display:inline-block;
-}
-
-@keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-30px);}
-100%{transform:translateY(0);}
-}
-
-.cake{
-font-size:120px;
-}
-
-.gifts{
-font-size:70px;
-}
-
-.letter{
-background:white;
-padding:20px;
-border-radius:20px;
-width:80%;
-margin:auto;
-font-size:20px;
-box-shadow:0 0 15px rgba(0,0,0,.2);
-}
-
-.final{
-font-size:40px;
-color:#ff0066;
-font-weight:bold;
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<audio id="music" loop>
-<source src="birthday.mp3" type="audio/mpeg">
+<!-- Music -->
+<audio id="bgmusic" loop>
+<source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<div id="password" class="page active">
-<h1>🔐 Enter Password</h1>
+<!-- Floating Hearts -->
+<div class="hearts"></div>
 
-<input type="password" id="pass">
+<!-- PASSWORD PAGE -->
+<section id="page1" class="page active">
 
-<br><br>
+<div class="card">
 
-<button onclick="checkPassword()">Unlock</button>
+<h1>🔐 Secret Birthday Website</h1>
+
+<p>Enter the password to continue</p>
+
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="checkPassword()">Unlock 🎁</button>
+
 </div>
 
-<div id="question" class="page">
-<h1>💖 Do you want a surprise?</h1>
+</section>
 
-<button onclick="yes()">YES</button>
+<!-- YES / NO PAGE -->
 
-<button onclick="no()">NO</button>
+<section id="page2" class="page">
+
+<div class="card">
+
+<h1>I made something special just for you 💜</h1>
+
+<p>Do you want to see it?</p>
+
+<div class="buttons">
+
+<button onclick="showBirthday()">YES 💖</button>
+
+<button id="noBtn">NO 😒</button>
+
 </div>
 
-<div id="funny" class="page">
-<h1>😂 Wrong Answer!</h1>
-
-<p>You HAVE to press YES 😤</p>
-
-<button onclick="yes()">Fine...YES ❤️</button>
 </div>
 
-<div id="birthday" class="page">
+</section>
 
-<h1>🎉 HAPPY BIRTHDAY 🎉</h1>
+<!-- MAIN PAGE -->
 
-<div class="balloon">🎈🎈🎈🎈🎈</div>
+<section id="page3" class="page">
 
-<div class="cake">🎂</div>
+<h1 class="title">
 
-<div class="gifts">🎁🎁🎁</div>
+🎉 HAPPY BIRTHDAY 🎉
 
-<h2>🎀 Today is all about YOU! 🎀</h2>
+</h1>
+
+<div class="balloons">
+
+🎈 🎈 🎈 🎈 🎈
+
+</div>
+
+<div class="cake">
+
+🎂
+
+</div>
+
+<p class="typing">
+
+Happy Birthday to the most amazing person ever ❤️
+
+</p>
+
+<div class="gift-section">
+
+<div class="gift" onclick="openGift(this)">🎁</div>
+
+<div class="gift" onclick="openGift(this)">🎁</div>
+
+<div class="gift" onclick="openGift(this)">🎁</div>
+
+</div>
+
+<button onclick="showLetter()">
+
+💌 Open Letter
+
+</button>
+
+</section>
+
+<!-- LETTER -->
+
+<section id="page4" class="page">
 
 <div class="letter">
 
-<h2>💌 A Letter For You</h2>
+<h2>💌 Dear Birthday Girl</h2>
 
 <p>
 
-Happy Birthday!
+Replace this text with your personal letter.
 
-I hope this year brings you happiness, success, amazing memories and lots of laughter.
+Write anything you want here.
 
-Thank you for being such a wonderful person.
+Tell her how special she is,
 
-May all your dreams come true.
+how thankful you are,
 
-Enjoy every moment of your special day.
+and wish her the happiest birthday ever.
 
 ❤️
 
 </p>
 
+<button onclick="showFinal()">
+
+Final Surprise ✨
+
+</button>
+
 </div>
 
-<br>
+</section>
 
-<button onclick="finalSurprise()">Final Surprise ✨</button>
+<!-- FINAL -->
 
-</div>
-
-<div id="final" class="page">
+<section id="page5" class="page">
 
 <h1 class="final">
 
-✨ YOU ARE AWESOME ✨
+✨ YOU ARE THE BEST ✨
 
 </h1>
 
-<h2>
+<p>
 
-❤️ Happy Birthday Once Again ❤️
+May all your dreams come true ❤️
 
-</h2>
+</p>
 
-<h1>
+<div class="fireworks">
 
-🎉🎂🎁🎈🎀
-
-</h1>
+🎆🎇🎆🎇🎆
 
 </div>
 
-<script>
+</section>
 
-const PASSWORD="1234";
-
-function checkPassword(){
-
-if(document.getElementById("pass").value===PASSWORD){
-
-document.getElementById("password").classList.remove("active");
-
-document.getElementById("question").classList.add("active");
-
-}
-
-else{
-
-alert("Wrong Password!");
-
-}
-
-}
-
-function yes(){
-
-document.getElementById("question").classList.remove("active");
-
-document.getElementById("funny").classList.remove("active");
-
-document.getElementById("birthday").classList.add("active");
-
-document.getElementById("music").play();
-
-}
-
-function no(){
-
-document.getElementById("question").classList.remove("active");
-
-document.getElementById("funny").classList.add("active");
-
-}
-
-function finalSurprise(){
-
-document.getElementById("birthday").classList.remove("active");
-
-document.getElementById("final").classList.add("active");
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
