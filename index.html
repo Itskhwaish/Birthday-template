@@ -1,93 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Birthday Surprise</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Birthday Surprise Diary</title>
 
-    .box {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      width: 80%;
-      max-width: 400px;
-    }
+<style>
+body{
+  margin:0;
+  font-family: Arial;
+  background: linear-gradient(135deg,#ffe6f0,#ffd6e0);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
 
-    input {
-      padding: 10px;
-      width: 80%;
-      margin-top: 10px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-    }
+/* main card */
+.card{
+  background:white;
+  width:90%;
+  max-width:420px;
+  border-radius:25px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
 
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 10px;
-      background: #ff4d6d;
-      color: white;
-      font-size: 16px;
-    }
+/* input */
+input{
+  width:80%;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  margin-top:10px;
+}
 
-    #main {
-      display: none;
-    }
+/* hidden */
+.hidden{display:none;}
 
-    .btn {
-      display: block;
-      margin: 10px auto;
-      padding: 12px;
-      width: 80%;
-      background: #ff4d6d;
-      color: white;
-      border-radius: 10px;
-      text-decoration: none;
-    }
-  </style>
+/* grid icons */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  margin-top:20px;
+}
+
+.item{
+  background:#fff0f5;
+  padding:20px;
+  border-radius:20px;
+  cursor:pointer;
+  font-size:16px;
+  transition:0.2s;
+}
+
+.item:hover{
+  transform:scale(1.05);
+  background:#ffe0eb;
+}
+
+/* emoji big */
+.emoji{
+  font-size:30px;
+  display:block;
+  margin-bottom:5px;
+}
+
+h1{
+  color:#ff4d6d;
+}
+
+.back{
+  margin-top:15px;
+  background:#ff4d6d;
+  color:white;
+  border:none;
+  padding:10px 15px;
+  border-radius:10px;
+}
+</style>
 </head>
+
 <body>
 
-<div id="login" class="box">
-  <h2>🎁 Enter Passcode</h2>
+<!-- LOGIN -->
+<div class="card" id="login">
+  <h1>📖 Birthday Diary</h1>
+  <p>Enter passcode to unlock surprise</p>
   <input type="password" id="code" placeholder="Enter code">
   <br>
-  <button onclick="checkCode()">Unlock</button>
+  <button onclick="check()">Unlock</button>
 </div>
 
-<div id="main" class="box">
-  <h2>🎉 Happy Birthday!</h2>
-  <p>Welcome to your surprise 💖</p>
+<!-- HOME -->
+<div class="card hidden" id="home">
+  <h1>🎉 Happy Birthday!</h1>
+  <p>Tap cute surprises below 💖</p>
 
-  <a class="btn" href="#">💌 Letter</a>
-  <a class="btn" href="#">📸 Memories</a>
-  <a class="btn" href="#">🎵 Song</a>
-  <a class="btn" href="#">🎥 Video</a>
-  <a class="btn" href="#">🎁 Final Surprise</a>
+  <div class="grid">
+    <div class="item" onclick="openPage('cake')">
+      <span class="emoji">🎂</span>
+      Cake Surprise
+    </div>
+
+    <div class="item" onclick="openPage('gifts')">
+      <span class="emoji">🎁</span>
+      Gifts Box
+    </div>
+
+    <div class="item" onclick="openPage('decor')">
+      <span class="emoji">🎀</span>
+      Birthday Decor
+    </div>
+
+    <div class="item" onclick="openPage('balloon')">
+      <span class="emoji">🎈</span>
+      Balloons
+    </div>
+  </div>
+</div>
+
+<!-- PAGES -->
+<div class="card hidden" id="cake">
+  <h1>🎂 Cake Surprise</h1>
+  <p>Wishing you the sweetest birthday ever 💖</p>
+  <button class="back" onclick="backHome()">Back</button>
+</div>
+
+<div class="card hidden" id="gifts">
+  <h1>🎁 Gifts Box</h1>
+  <p>You are the best gift in this world 🎀</p>
+  <button class="back" onclick="backHome()">Back</button>
+</div>
+
+<div class="card hidden" id="decor">
+  <h1>🎀 Birthday Decor</h1>
+  <p>Everything is decorated just for you ✨</p>
+  <button class="back" onclick="backHome()">Back</button>
+</div>
+
+<div class="card hidden" id="balloon">
+  <h1>🎈 Balloons</h1>
+  <p>Pop of happiness everywhere 🎉💗</p>
+  <button class="back" onclick="backHome()">Back</button>
 </div>
 
 <script>
-  function checkCode() {
-    let code = document.getElementById("code").value;
-    if (code === "2115") {
-      document.getElementById("login").style.display = "none";
-      document.getElementById("main").style.display = "block";
-    } else {
-      alert("Wrong code 😢 Try again");
-    }
+function check(){
+  let code = document.getElementById("code").value;
+  if(code === "2115"){
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("home").classList.remove("hidden");
+  }else{
+    alert("Wrong passcode ❌");
   }
+}
+
+function openPage(id){
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById(id).classList.remove("hidden");
+}
+
+function backHome(){
+  document.querySelectorAll(".card").forEach(c => c.classList.add("hidden"));
+  document.getElementById("home").classList.remove("hidden");
+}
 </script>
 
 </body>
