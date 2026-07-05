@@ -1,172 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Birthday Surprise Diary</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ❤️</title>
 
 <style>
 body{
-  margin:0;
-  font-family: Arial;
-  background: linear-gradient(135deg,#ffe6f0,#ffd6e0);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:100vh;
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#ffb6c1,#ffd1dc);
+text-align:center;
+overflow-x:hidden;
 }
 
-/* main card */
-.card{
-  background:white;
-  width:90%;
-  max-width:420px;
-  border-radius:25px;
-  padding:20px;
-  text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+.page{
+display:none;
+padding:40px;
 }
 
-/* input */
+.active{
+display:block;
+}
+
+button{
+padding:15px 30px;
+font-size:18px;
+margin:10px;
+  
+border:none;
+border-radius:30px;
+cursor:pointer;
+background:#ff4f81;
+color:white;
+}
+
 input{
-  width:80%;
-  padding:10px;
-  border-radius:10px;
-  border:1px solid #ccc;
-  margin-top:10px;
+padding:15px;
+font-size:18px;
+border-radius:20px;
+border:none;
 }
 
-/* hidden */
-.hidden{display:none;}
-
-/* grid icons */
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-  margin-top:20px;
+.balloon{
+font-size:50px;
+animation:float 5s infinite;
+display:inline-block;
 }
 
-.item{
-  background:#fff0f5;
-  padding:20px;
-  border-radius:20px;
-  cursor:pointer;
-  font-size:16px;
-  transition:0.2s;
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-30px);}
+100%{transform:translateY(0);}
 }
 
-.item:hover{
-  transform:scale(1.05);
-  background:#ffe0eb;
+.cake{
+font-size:120px;
 }
 
-/* emoji big */
-.emoji{
-  font-size:30px;
-  display:block;
-  margin-bottom:5px;
+.gifts{
+font-size:70px;
 }
 
-h1{
-  color:#ff4d6d;
+.letter{
+background:white;
+padding:20px;
+border-radius:20px;
+width:80%;
+margin:auto;
+font-size:20px;
+box-shadow:0 0 15px rgba(0,0,0,.2);
 }
 
-.back{
-  margin-top:15px;
-  background:#ff4d6d;
-  color:white;
-  border:none;
-  padding:10px 15px;
-  border-radius:10px;
+.final{
+font-size:40px;
+color:#ff0066;
+font-weight:bold;
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<div class="card" id="login">
-  <h1>📖 Birthday Diary</h1>
-  <p>Enter passcode to unlock surprise</p>
-  <input type="password" id="code" placeholder="Enter code">
-  <br>
-  <button onclick="check()">Unlock</button>
+<audio id="music" loop>
+<source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+<div id="password" class="page active">
+<h1>🔐 Enter Password</h1>
+
+<input type="password" id="pass">
+
+<br><br>
+
+<button onclick="checkPassword()">Unlock</button>
 </div>
 
-<!-- HOME -->
-<div class="card hidden" id="home">
-  <h1>🎉 Happy Birthday!</h1>
-  <p>Tap cute surprises below 💖</p>
+<div id="question" class="page">
+<h1>💖 Do you want a surprise?</h1>
 
-  <div class="grid">
-    <div class="item" onclick="openPage('cake')">
-      <span class="emoji">🎂</span>
-      Cake Surprise
-    </div>
+<button onclick="yes()">YES</button>
 
-    <div class="item" onclick="openPage('gifts')">
-      <span class="emoji">🎁</span>
-      Gifts Box
-    </div>
-
-    <div class="item" onclick="openPage('decor')">
-      <span class="emoji">🎀</span>
-      Birthday Decor
-    </div>
-
-    <div class="item" onclick="openPage('balloon')">
-      <span class="emoji">🎈</span>
-      Balloons
-    </div>
-  </div>
+<button onclick="no()">NO</button>
 </div>
 
-<!-- PAGES -->
-<div class="card hidden" id="cake">
-  <h1>🎂 Cake Surprise</h1>
-  <p>Wishing you the sweetest birthday ever 💖</p>
-  <button class="back" onclick="backHome()">Back</button>
+<div id="funny" class="page">
+<h1>😂 Wrong Answer!</h1>
+
+<p>You HAVE to press YES 😤</p>
+
+<button onclick="yes()">Fine...YES ❤️</button>
 </div>
 
-<div class="card hidden" id="gifts">
-  <h1>🎁 Gifts Box</h1>
-  <p>You are the best gift in this world 🎀</p>
-  <button class="back" onclick="backHome()">Back</button>
+<div id="birthday" class="page">
+
+<h1>🎉 HAPPY BIRTHDAY 🎉</h1>
+
+<div class="balloon">🎈🎈🎈🎈🎈</div>
+
+<div class="cake">🎂</div>
+
+<div class="gifts">🎁🎁🎁</div>
+
+<h2>🎀 Today is all about YOU! 🎀</h2>
+
+<div class="letter">
+
+<h2>💌 A Letter For You</h2>
+
+<p>
+
+Happy Birthday!
+
+I hope this year brings you happiness, success, amazing memories and lots of laughter.
+
+Thank you for being such a wonderful person.
+
+May all your dreams come true.
+
+Enjoy every moment of your special day.
+
+❤️
+
+</p>
+
 </div>
 
-<div class="card hidden" id="decor">
-  <h1>🎀 Birthday Decor</h1>
-  <p>Everything is decorated just for you ✨</p>
-  <button class="back" onclick="backHome()">Back</button>
+<br>
+
+<button onclick="finalSurprise()">Final Surprise ✨</button>
+
 </div>
 
-<div class="card hidden" id="balloon">
-  <h1>🎈 Balloons</h1>
-  <p>Pop of happiness everywhere 🎉💗</p>
-  <button class="back" onclick="backHome()">Back</button>
+<div id="final" class="page">
+
+<h1 class="final">
+
+✨ YOU ARE AWESOME ✨
+
+</h1>
+
+<h2>
+
+❤️ Happy Birthday Once Again ❤️
+
+</h2>
+
+<h1>
+
+🎉🎂🎁🎈🎀
+
+</h1>
+
 </div>
 
 <script>
-function check(){
-  let code = document.getElementById("code").value;
-  if(code === "2115"){
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("home").classList.remove("hidden");
-  }else{
-    alert("Wrong passcode ❌");
-  }
+
+const PASSWORD="1234";
+
+function checkPassword(){
+
+if(document.getElementById("pass").value===PASSWORD){
+
+document.getElementById("password").classList.remove("active");
+
+document.getElementById("question").classList.add("active");
+
 }
 
-function openPage(id){
-  document.getElementById("home").classList.add("hidden");
-  document.getElementById(id).classList.remove("hidden");
+else{
+
+alert("Wrong Password!");
+
 }
 
-function backHome(){
-  document.querySelectorAll(".card").forEach(c => c.classList.add("hidden"));
-  document.getElementById("home").classList.remove("hidden");
 }
+
+function yes(){
+
+document.getElementById("question").classList.remove("active");
+
+document.getElementById("funny").classList.remove("active");
+
+document.getElementById("birthday").classList.add("active");
+
+document.getElementById("music").play();
+
+}
+
+function no(){
+
+document.getElementById("question").classList.remove("active");
+
+document.getElementById("funny").classList.add("active");
+
+}
+
+function finalSurprise(){
+
+document.getElementById("birthday").classList.remove("active");
+
+document.getElementById("final").classList.add("active");
+
+}
+
 </script>
 
 </body>
